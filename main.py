@@ -19,6 +19,9 @@ class Article:
             self.in_stock = None
 
 
+    def check_if_item_available(self):
+    return self.in_stock > 0
+    
     def decrement_items_quantity(self):
         if self.in_stock > 0:
             self.in_stock -= 1
@@ -45,7 +48,11 @@ class Article:
 article_id = int(input('Please enter id of an article: '))
 
 article_1 = Article(article_id)
-article_1.decrement_items_quantity()
-article_1.generate_pdf()
+item_is_available = article_1.check_if_item_available()
+if item_is_available:
+    article_1.decrement_items_quantity()
+    article_1.generate_pdf()
+else:
+    print('The item is sold out')
 
 
